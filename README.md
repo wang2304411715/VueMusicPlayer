@@ -17,10 +17,10 @@
 		LrcComponent
 ![MusicPlay第一张图片](https://github.com/wang2304411715/VueMusicPlayer/blob/master/PreviewImages/musicPlay1.png)
 ![MusicPlay第二张图片](https://github.com/wang2304411715/VueMusicPlayer/blob/master/PreviewImages/musicPlay2.png)
-###	3. SearchView	
-![SearchView图片](https://github.com/wang2304411715/VueMusicPlayer/blob/master/PreviewImages/rangkingList.png)
-###	4. RankingList
-![RankingList图片](https://github.com/wang2304411715/VueMusicPlayer/blob/master/PreviewImages/searchView.png)
+###	3. RankingList
+![RankingList图片](https://github.com/wang2304411715/VueMusicPlayer/blob/master/PreviewImages/rangkingList.png)
+###	4. SearchView	
+![SearchView图片](https://github.com/wang2304411715/VueMusicPlayer/blob/master/PreviewImages/searchView.png)
 ###	5. SingerInfor
 ![SingerInfor图片](https://github.com/wang2304411715/VueMusicPlayer/blob/master/PreviewImages/singerSongs.png)
 
