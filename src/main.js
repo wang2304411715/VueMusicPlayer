@@ -20,9 +20,21 @@ Vue.use(Loading.directive)
 
 Vue.use(VueAwesomeSwiper)
 
-Vue.prototype.$axios = Axios
-Vue.prototype.HOST = '/baidu_music_api'
 Vue.prototype.$loading = Loading.service
+
+// Vue.prototype.$axios = Axios
+// Vue.prototype.HOST = '/baidu_music_api'
+
+Vue.prototype.$Jsonp = function(url) {
+	var callback = "wzlcallback_" + new Date().getTime();
+	var srcURL = url + "&callback=" + callback;
+	var body = document.getElementsByTagName('body')[0];
+	var script = document.createElement('script');
+	script.setAttribute('src',srcURL);
+	body.appendChild(script);        
+	return callback;
+}
+
 
 Vue.config.productionTip = false
 

@@ -30,20 +30,29 @@ export default {
 		}
 	},
 	created() {
-		const singerListURL = this.HOST + "/v1/restserver/ting";
-    	this.$axios.get(singerListURL, {
-    		params: {
-    			method: "baidu.ting.search.catalogSug",
-    			query: this.$route.params.searchcontent
-    		}
-    	})
-    	.then(res => {
-      		this.songsArr = res.data.song;
-      		this.fullscreenLoading = false
-    	})
-    	.catch(error =>{
-      		console.log(error);
-    	})
+		// const singerListURL = this.HOST + "/v1/restserver/ting";
+  //   	this.$axios.get(singerListURL, {
+  //   		params: {
+  //   			method: "baidu.ting.search.catalogSug",
+  //   			query: this.$route.params.searchcontent
+  //   		}
+  //   	})
+  //   	.then(res => {
+  //     		this.songsArr = res.data.song;
+  //     		this.fullscreenLoading = false
+  //   	})
+  //   	.catch(error =>{
+  //     		console.log(error);
+  //   	})
+
+		var $vm = this;
+		const singerListURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.search.catalogSug&query=" + $vm.$route.params.searchcontent;
+		var callback = $vm.$Jsonp(singerListURL);
+		window[callback] = function(data) {
+			$vm.songsArr = data.song;
+      		$vm.fullscreenLoading = false;
+		}
+
 	}
 }
 </script>

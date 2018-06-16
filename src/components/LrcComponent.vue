@@ -36,15 +36,48 @@ export default {
 	    }
   	},
 	created() {
-		const lrcURL = this.HOST + "/v1/restserver/ting";
-		this.$axios.get(lrcURL, {
-			params: {
-				method: "baidu.ting.song.lry",
-				songid: this.songid
-			}
-		})
-		.then(res => {
-			var lyrics = res.data.lrcContent ? res.data.lrcContent.split("\n") : "";
+		// const lrcURL = this.HOST + "/v1/restserver/ting";
+		// this.$axios.get(lrcURL, {
+		// 	params: {
+		// 		method: "baidu.ting.song.lry",
+		// 		songid: this.songid
+		// 	}
+		// })
+		// .then(res => {
+		// 	var lyrics = res.data.lrcContent ? res.data.lrcContent.split("\n") : "";
+		//   	var lrcObj = {};
+		//   	for(var i = 0; i < lyrics.length; i++) {
+		//     	var lyric = decodeURIComponent(lyrics[i]);
+		// 		var timeReg = /\[\d*:\d*(\.\d*)*\]/g;
+		//     	var timeRegExpArr = lyric.match(timeReg);
+		//     	if(!timeRegExpArr)continue;
+		//     	var clause = lyric.replace(timeReg,'');
+		//     	// timeRegExpArr: ["[01:00.87]"]  clause: 成王败寇尽东流
+		//         for(var k = 0,h = timeRegExpArr.length;k < h;k++) {
+		//             var t = timeRegExpArr[k];
+		//             var min = Number(String(t.match(/\[\d*/)).slice(1)),
+		//                 sec = Number(String(t.match(/\:\d*/)).slice(1));
+		//             var time = min * 60 + sec;
+		//             lrcObj[time] = clause;
+		//             /*lrcObj: { time: clause }*/
+		//         }
+		//     }
+		//     this.lrcData = lrcObj;
+		//     var allKey, keyArr = [];
+		//     for(allKey in this.lrcData) {
+		//     	keyArr.push(allKey)
+		// 	}
+		// 		this.keyArr = keyArr;
+		// })
+		// .catch(error => {
+		// 	console.log(error);
+		// })
+
+		var $vm = this;
+		const lrcURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.song.lry&songid=" + $vm.songid;
+		var callback = $vm.$Jsonp(lrcURL);
+		window[callback] = function(data) {
+			var lyrics = data.lrcContent ? data.lrcContent.split("\n") : "";
 		  	var lrcObj = {};
 		  	for(var i = 0; i < lyrics.length; i++) {
 		    	var lyric = decodeURIComponent(lyrics[i]);
@@ -62,16 +95,13 @@ export default {
 		            /*lrcObj: { time: clause }*/
 		        }
 		    }
-		    this.lrcData = lrcObj;
+		    $vm.lrcData = lrcObj;
 		    var allKey, keyArr = [];
-		    for(allKey in this.lrcData) {
+		    for(allKey in $vm.lrcData) {
 		    	keyArr.push(allKey)
 			}
-				this.keyArr = keyArr;
-		})
-		.catch(error => {
-			console.log(error);
-		})
+				$vm.keyArr = keyArr;
+		}
 	},
 	methods: {
 		isActive(key, index) {
