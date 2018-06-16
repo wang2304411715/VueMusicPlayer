@@ -33,30 +33,30 @@ export default {
 		}
 	},
 	created(){
-    	// const rankingListURL = this.HOST + "/v1/restserver/ting";
-    	// this.$axios.get(rankingListURL, {
-    	// 	params: {
-    	// 		method: "baidu.ting.billboard.billList",
-    	// 		type: this.$route.params.musictype,
-    	// 		size: 20,
-    	// 		offset: 0
-    	// 	}
-    	// })
-    	// .then(res => {
-     //  		this.songList = res.data.song_list;
-     //  		this.fullscreenLoading = false
-    	// })
-    	// .catch(error =>{
-     //  		console.log(error);
-    	// })
+    	const rankingListURL = this.HOST + "/v1/restserver/ting";
+    	this.$axios.get(rankingListURL, {
+    		params: {
+    			method: "baidu.ting.billboard.billList",
+    			type: this.$route.params.musictype,
+    			size: 20,
+    			offset: 0
+    		}
+    	})
+    	.then(res => {
+      		this.songList = res.data.song_list;
+      		this.fullscreenLoading = false
+    	})
+    	.catch(error =>{
+      		console.log(error);
+    	})
 
-		var $vm = this;
-		const rankingListURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billList&size=20&offset=0&type=" + $vm.$route.params.musictype;
-		var callback = $vm.$Jsonp(rankingListURL);
-		window[callback] = function(data) {
-			$vm.songList = data.song_list;
-      		$vm.fullscreenLoading = false;
-		}
+		// var $vm = this;
+		// const rankingListURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billList&size=20&offset=0&type=" + $vm.$route.params.musictype;
+		// var callback = $vm.$Jsonp(rankingListURL);
+		// window[callback] = function(data) {
+		// 	$vm.songList = data.song_list;
+  //     		$vm.fullscreenLoading = false;
+		// }
   	}
 }
 </script>

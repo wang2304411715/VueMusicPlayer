@@ -68,21 +68,21 @@ export default {
      	}
 	},
   	created(){
-    	// const playURL = this.HOST + "/v1/restserver/ting?method=baidu.ting.song.play&songid="+this.$route.params.songid;
-    	// this.$axios.get(playURL)
-    	// .then(res => {
-     //  		this.playData = res.data;
-    	// })
-    	// .catch(error => {
-     //  		console.log(error);
-    	// })
+    	const playURL = this.HOST + "/v1/restserver/ting?method=baidu.ting.song.play&songid="+this.$route.params.songid;
+    	this.$axios.get(playURL)
+    	.then(res => {
+      		this.playData = res.data;
+    	})
+    	.catch(error => {
+      		console.log(error);
+    	})
 
-		var $vm = this;
-		const playURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.song.play&songid=" + $vm.$route.params.songid;
-		var callback = $vm.$Jsonp(playURL);
-		window[callback] = function(data) {
-			$vm.playData = data;
-		}
+		// var $vm = this;
+		// const playURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.song.play&songid=" + $vm.$route.params.songid;
+		// var callback = $vm.$Jsonp(playURL);
+		// window[callback] = function(data) {
+		// 	$vm.playData = data;
+		// }
   	},
   	mounted(){
     	this.addEventListeners();

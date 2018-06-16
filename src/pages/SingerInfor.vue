@@ -33,31 +33,31 @@ export default {
 		}
 	},
 	created(){
-    	// const singerListURL = this.HOST + "/v1/restserver/ting";
-    	// this.$axios.get(singerListURL, {
-    	// 	params: {
-    	// 		method: "baidu.ting.artist.getSongList",
-    	// 		tinguid: this.$route.params.singerid,
-    	// 		limits: 20,
-    	// 		use_cluster: 1,
-    	// 		order: 2
-    	// 	}
-    	// })
-    	// .then(res => {
-     //  		this.songList = res.data.songlist;
-     //  		this.fullscreenLoading = false
-    	// })
-    	// .catch(error =>{
-     //  		console.log(error);
-    	// })
+    	const singerListURL = this.HOST + "/v1/restserver/ting";
+    	this.$axios.get(singerListURL, {
+    		params: {
+    			method: "baidu.ting.artist.getSongList",
+    			tinguid: this.$route.params.singerid,
+    			limits: 20,
+    			use_cluster: 1,
+    			order: 2
+    		}
+    	})
+    	.then(res => {
+      		this.songList = res.data.songlist;
+      		this.fullscreenLoading = false
+    	})
+    	.catch(error =>{
+      		console.log(error);
+    	})
 
-		var $vm = this;
-		const singerListURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.artist.getSongList&limits=20&use_cluster=1&order=2&tinguid=" + $vm.$route.params.singerid;
-		var callback = $vm.$Jsonp(singerListURL);
-		window[callback] = function(data) {
-			$vm.songList = data.songlist;
-      		$vm.fullscreenLoading = false;
-		}
+		// var $vm = this;
+		// const singerListURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.artist.getSongList&limits=20&use_cluster=1&order=2&tinguid=" + $vm.$route.params.singerid;
+		// var callback = $vm.$Jsonp(singerListURL);
+		// window[callback] = function(data) {
+		// 	$vm.songList = data.songlist;
+  //     		$vm.fullscreenLoading = false;
+		// }
   	}
 }
 </script>

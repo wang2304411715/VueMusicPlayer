@@ -24,27 +24,27 @@ export default {
 		}
 	},
 	created(){
-	    // const singerInforURL = this.HOST + "/v1/restserver/ting";
-	    // this.$axios.get(singerInforURL, {
-	    // 	params: {
-	    // 		method: "baidu.ting.artist.getInfo",
-	    // 		tinguid: this.singerId
-	    // 	}
-	    // })
-	    // .then(res => {
-	    //   this.singerInfor = res.data;
-	    // })
-	    // .catch(error => {
-	    //   console.log(error);
-	    // })
+	    const singerInforURL = this.HOST + "/v1/restserver/ting";
+	    this.$axios.get(singerInforURL, {
+	    	params: {
+	    		method: "baidu.ting.artist.getInfo",
+	    		tinguid: this.singerId
+	    	}
+	    })
+	    .then(res => {
+	      this.singerInfor = res.data;
+	    })
+	    .catch(error => {
+	      console.log(error);
+	    })
 
-		var $vm = this;
-		const singerInforURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.artist.getInfo&tinguid=" + $vm.singerId;
-		var callback = $vm.$Jsonp(singerInforURL);
-		window[callback] = function(data) {
-			$vm.singerInfor = data;
-      		$vm.fullscreenLoading = false;
-		}
+		// var $vm = this;
+		// const singerInforURL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.artist.getInfo&tinguid=" + $vm.singerId;
+		// var callback = $vm.$Jsonp(singerInforURL);
+		// window[callback] = function(data) {
+		// 	$vm.singerInfor = data;
+  //     		$vm.fullscreenLoading = false;
+		// }
   	}
 }
 
